@@ -22,8 +22,9 @@ let staged = getNode("Title");
 
 // Progressive enhance when in noscript
 $('section:not(#Title)').hide();
-drawNewCircle(50, 50, "Title", null);
-selectCircle("Title");
+// drawNewCircle(50, 50, "Title", null);
+// selectCircle("Title");
+renderTree(100, 20, staged);
 
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
@@ -54,15 +55,15 @@ function takeRight() {
     return staged;
 }
 
-// Workaround for JQuery's inability to append to SVG
-// http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
 
-// OPEN "NOT MY CODE BLOCK"
 function testButton() {
     drawNewCircle(100,100, "1", null);
     
 }
 
+// Workaround for JQuery's inability to append to SVG
+// http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
+// OPEN "NOT MY CODE BLOCK"
 function SVG(tag) {
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
@@ -74,6 +75,7 @@ function drawNewCircle(x, y, id, parent) {
             .attr('r', 10)
             .attr('stroke', "black")
             .attr('stroke-width', "2")
+               // TODO: Start hidden
             .attr('fill', "grey")
             .attr('id', id)
             .appendTo($("svg#tree"));
@@ -84,5 +86,26 @@ function drawNewCircle(x, y, id, parent) {
 function selectCircle(id) {
     $("circle").attr('fill', "grey")
     $("circle#" + id).attr('fill', "white");
+}
+
+function renderTree(x, y, node) {
+    
+    
+    
+    // if node.seen === true;  
+    drawNewCircle(x, y, node.id);
+    
+    let left = getNode(node.left);
+    let right = getNode(node.right);
+    
+    if (left !== undefined 
+        && !$("circle#" + left.id).length) {
+        renderTree(x - 20, y + 20, left);
+    }
+    
+    if (right !== undefined
+        && !$("circle#" + right.id).length) {
+        // renderTree(x + 20, y + 20, right);
+    }
 }
 
