@@ -1,52 +1,56 @@
 'use strict';
-let x = "disable JSLint"
+let x = "disable JSLint";
 /* https://github.com/adobe/brackets/issues/11632 */
 
-function Node(id, data, left, right) {
+// The main datastructure
+function Node(id, left, right, seen) {
     this.id = id;
-    this.data = data; /* TODO: Remove */
     this.left = left;
     this.right = right;
+    this.seen = seen;
 }
  
-
-function singleton(id, data) {
-    return new Node(start, value, null, null);
-}
-
-
-const look_up = {
-    "Title": new Node("Title", "Are you a meme?", "Yes", "No"),
-    "Yes": new Node("Yes", "You're a meme", null, null),
-    "No": new Node("No", "You're not a meme", null, null)
+//A list of chapters with links to other chapters. This is the order they should appear in the no-script version of the website.
+const nodeMap = {
+    "Title": new Node("Title", "Yes", "No", true),
+    "Yes": new Node("Yes", "Title", "Title", false),
+    "No": new Node("No", "Title", "Title", false)
 };
 
-let staged = get_node("Title");
+// Start of the story
+let staged = getNode("Title");
+
+// Progressive enhance when in noscript
 $('section:not(#Title)').hide();
 
-$(".takeLeft").click(take_left);
-$(".takeRight").click(take_right);
+$(".takeLeft").click(takeLeft);
+$(".takeRight").click(takeRight);
+// TODO: STRIP MANUAL JUMPS PAGE JUMPS WITH JQUERY
+// TODO: ADD MANUAL PAGE JUMPS
 
 
-function get_node(id) {
-    return look_up[id];
+function getNode(id) {
+    return nodeMap[id];
 }
 
-function take_left() {
-    /* Will fail on null, don't abuse */
-    staged = get_node(staged.left);
-    $('section').show();
+function takeLeft() {
+    staged = getNode(staged.left);
+    staged.seen = true;
+    $('section#' + staged.id).show()
     $('section:not(#' + staged.id + ')').hide();
-    
     console.log("Went left");
-    return staged;
+    return staged; // prevents use of <a onClick...
 }
 
-function take_right() {
-    /* Will fail on null, don't abuse */
-    stagedText = get_node(staged.right);
-    $('section').show();
+function takeRight() {
+    staged = getNode(staged.right);
+    staged.seen = true;
+    $('section#' + staged.id).show()
     $('section:not(#' + staged.id + ')').hide();
     console.log("Went right");
     return staged;
 }
+
+
+
+
