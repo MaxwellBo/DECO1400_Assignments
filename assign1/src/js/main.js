@@ -22,9 +22,12 @@ let staged = getNode("Title");
 
 // Progressive enhance when in noscript
 $('section:not(#Title)').hide();
+drawNewCircle(50, 50, "Title", null);
+selectCircle("Title");
 
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
+$(".testButton").click(testButton);
 // TODO: STRIP MANUAL JUMPS PAGE JUMPS WITH JQUERY
 // TODO: ADD MANUAL PAGE JUMPS
 
@@ -51,6 +54,35 @@ function takeRight() {
     return staged;
 }
 
+// Workaround for JQuery's inability to append to SVG
+// http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
 
+// OPEN "NOT MY CODE BLOCK"
+function testButton() {
+    drawNewCircle(100,100, "1", null);
+    
+}
 
+function SVG(tag) {
+    return document.createElementNS('http://www.w3.org/2000/svg', tag);
+}
+
+function drawNewCircle(x, y, id, parent) {
+        $(SVG('circle'))
+            .attr('cx', x)
+            .attr('cy', y)
+            .attr('r', 10)
+            .attr('stroke', "black")
+            .attr('stroke-width', "2")
+            .attr('fill', "grey")
+            .attr('id', id)
+            .appendTo($("svg#tree"));
+}
+
+// CLOSE "NOT MY CODE BLOCK"
+
+function selectCircle(id) {
+    $("circle").attr('fill', "grey")
+    $("circle#" + id).attr('fill', "white");
+}
 
