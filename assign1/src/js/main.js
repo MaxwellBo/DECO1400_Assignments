@@ -74,7 +74,7 @@ function drawNewCircle(x, y, id, parent) {
             .attr('cy', y)
             .attr('r', 10)
             .attr('stroke', "black")
-            .attr('stroke-width', "2")
+            .attr('stroke-width', "1")
                // TODO: Start hidden
             .attr('fill', "grey")
             .attr('id', id)
@@ -92,7 +92,7 @@ function renderTree(x, y, node) {
     
     
     
-    // if node.seen === true;  
+    // if node.seen === true;
     drawNewCircle(x, y, node.id);
     
     let left = getNode(node.left);
@@ -100,12 +100,12 @@ function renderTree(x, y, node) {
     
     if (left !== undefined 
         && !$("circle#" + left.id).length) {
-        renderTree(x - 20, y + 20, left);
+        renderTree(x - 40, y + 40, left);
     }
     
     if (right !== undefined
         && !$("circle#" + right.id).length) {
-        // renderTree(x + 20, y + 20, right);
+        renderTree(x + 40, y + 40, right);
     }
 }
 
