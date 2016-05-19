@@ -36,8 +36,8 @@ h3 {
 }
 
 path {
-  stroke-width: 3px;
-  stroke: #000;
+  stroke-width: 2px;
+  stroke: rgba(38, 38, 38, 0.58);
   marker-end:url(#arrow-head);
   fill:none;
 }

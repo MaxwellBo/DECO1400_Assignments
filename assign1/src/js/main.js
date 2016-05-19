@@ -2,7 +2,9 @@
 let x = "disable JSLint";
 /* https://github.com/adobe/brackets/issues/11632 */
 
-const NODE_RADIUS = 10
+const NODE_RADIUS = 10;
+const LEFT = -1;
+const RIGHT = 1;
 
 // The main datastructure
 function Node(id, left, right, seen) {
@@ -59,7 +61,7 @@ function takeRight() {
 
 
 function testButton() {
-    drawArrow(100, 20, 60, 60);
+    drawArrow(100, 20, 60, 60, -1);
 }
 
 function refreshTree() {
@@ -92,23 +94,32 @@ function drawNewCircle(x, y, id, parent) {
 
 function drawArrow(x1, y1, x2, y2, direction) {
     
-    // Where direction is -1 for left, 1 for right
-   
-    let ax1 = x1 + (direction * 0.707 * (NODE_RADIUS / 2));
-    let ay1 = y1 + (0.707 * (NODE_RADIUS / 2));
-    let ay2 = y2 - NODE_RADIUS;
+    const PADDING = 5 
     
-    let dx = (x2 - x1);
-    let dy = (y2 - y1);
+//    let ax1 = x1 + (direction * 0.707 * ((NODE_RADIUS / 2) + PADDING));
+//    let ay1 = y1 + (0.707 * ((NODE_RADIUS / 2) + PADDING));
+//    
+    let ax1 = x1 + (direction * ((NODE_RADIUS / 2) + PADDING));        
+    let ay1 = y1;
+    
+    let ax2 = x2;
+    let ay2 = y2 - NODE_RADIUS - PADDING;
+    
+    let dx = Math.abs(x2 - x1);
+    
+    console.log(dx);
     
     // control point
-    let xc = (x1 + dx) * direction;
-    let yc = (y2 - y1);
+    let xc = (x1 + dx * direction)
+    let yc = (y1);
     
-    let pth = 'M' + ax1 + ' ' + ax2 + " Q" + xc + ' ' + yc + ", " + x2 + ' ' + ay2 
+    let pth = 'M' +  ax1 + ' ' + ay1 + " Q" + xc + ' ' + yc + ", " + ax2 + ' ' + ay2;
+    
+    console.log(pth);
    
     $(SVG('path'))
-        .attr('d', "M0 0 Q50 0, 100 100")
+//        .attr('d', "M0 0 Q50 0, 100 100")
+        .attr('d', pth)
         .appendTo($("svg#tree"));
 }
 
@@ -120,7 +131,6 @@ function selectCircle(id) {
 function renderTree(x, y, node) {
     
     
-    
     // if node.seen === true;
     drawNewCircle(x, y, node.id);
     
@@ -130,11 +140,13 @@ function renderTree(x, y, node) {
     if (left !== undefined 
         && !$("circle#" + left.id).length) {
         renderTree(x - 40, y + 40, left);
+        drawArrow(x, y, x - 40, y + 40, LEFT);
     }
     
     if (right !== undefined
         && !$("circle#" + right.id).length) {
         renderTree(x + 40, y + 40, right);
+        drawArrow(x, y, x + 40, y + 40, RIGHT);
     }
 }
 
