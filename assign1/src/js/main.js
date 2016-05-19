@@ -5,6 +5,8 @@ let x = "disable JSLint";
 const NODE_RADIUS = 10;
 const LEFT = -1;
 const RIGHT = 1;
+const NO_LOOP = false;
+const LOOP = true;
 
 // The main datastructure
 function Node(id, left, right, seen) {
@@ -17,7 +19,7 @@ function Node(id, left, right, seen) {
 //A list of chapters with links to other chapters. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
     "Title": new Node("Title", "Yes", "No", true),
-    "Yes": new Node("Yes", "Maybe", "Title", false),
+    "Yes": new Node("Yes", "Maybe", null, false),
     "No": new Node("No", null, null, false), 
     "Maybe": new Node("Maybe", "Title", null, false)
 };
@@ -29,7 +31,7 @@ let staged = getNode("Title");
 $('section:not(#Title)').hide();
 // drawNewCircle(50, 50, "Title", null);
 // selectCircle("Title");
-renderTree(100, 20, staged);
+renderTree(300, 100, staged);
 
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
@@ -93,7 +95,7 @@ function drawNewCircle(x, y, id, parent) {
 // CLOSE "NOT MY CODE BLOCK"
 
 
-function drawArrow(x1, y1, x2, y2, direction) {
+function drawArrow(x1, y1, x2, y2, direction, loop) {
     
     const PADDING = 5 
     
@@ -108,18 +110,25 @@ function drawArrow(x1, y1, x2, y2, direction) {
     
     let dx = Math.abs(x2 - x1);
     
-    console.log(dx);
     
     // control point
-    let xc = (x1 + dx * direction)
-    let yc = (y1);
+    
+    if (loop) {
+        var xc = x1;
+        console.log(xc);
+        var yc = (y2);
+        console.log(yc);
+    }
+    else {
+        var xc = (x1 + dx * direction);
+        var yc = (y1);
+    }
+
     
     let pth = 'M' +  ax1 + ' ' + ay1 + " Q" + xc + ' ' + yc + ", " + ax2 + ' ' + ay2;
     
-    console.log(pth);
    
     $(SVG('path'))
-//        .attr('d', "M0 0 Q50 0, 100 100")
         .attr('d', pth)
         .appendTo($("svg#tree"));
 }
@@ -134,20 +143,46 @@ function renderTree(x, y, node) {
     
     // if node.seen === true;
     drawNewCircle(x, y, node.id);
+    console.log("RENDERING " + node.id);
     
     let left = getNode(node.left);
     let right = getNode(node.right);
     
-    if (left !== undefined 
-        && !$("circle#" + left.id).length) {
-        renderTree(x - 40, y + 40, left);
-        drawArrow(x, y, x - 40, y + 40, LEFT);
+    if (left !== undefined) {
+        
+        if ($("circle#" + left.id).length) {
+            let cx = $("circle#" + left.id).attr('cx');
+            let cy = $("circle#" + left.id).attr('cy');
+            
+            console.log(cx);
+            console.log(cy);
+    
+            
+            drawArrow(x, y, cx, cy, LEFT, LOOP);
+        }
+    
+        else {
+            renderTree(x - 40, y + 40, left);
+            drawArrow(x, y, x - 40, y + 40, LEFT);
+        }
     }
     
-    if (right !== undefined
-        && !$("circle#" + right.id).length) {
-        renderTree(x + 40, y + 40, right);
-        drawArrow(x, y, x + 40, y + 40, RIGHT);
+    if (right !== undefined) {
+        
+        if ($("circle#" + right.id).length) {
+            let cx = $("circle#" + right.id).attr('cx');
+            let cy = $("circle#" + right.id).attr('cy');
+            
+            console.log(cx);
+            console.log(cy);
+            
+            drawArrow(x, y, cx, cy, RIGHT, LOOP);
+        }
+        
+        else {
+            renderTree(x + 40, y + 40, right);
+            drawArrow(x, y, x + 40, y + 40, RIGHT, NO_LOOP);
+        }
     }
 }
 
