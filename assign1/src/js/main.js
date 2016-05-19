@@ -62,6 +62,12 @@ function takeRight() {
     return staged;
 }
 
+function nodeClick(id) {
+    staged = getNode(id);
+    $('section#' + staged.id).show();
+    $('section:not(#' + staged.id + ')').hide();
+}
+
 
 function testButton() {
     drawArrow(100, 20, 60, 60, -1);
@@ -80,6 +86,12 @@ function SVG(tag) {
 }
 
 function drawNewCircle(x, y, id, parent) {
+    
+    let onClickFunc =  function() {
+        console.log("IMMEDIATE CLICK")
+        nodeClick(id);
+    }
+    
         $(SVG('circle'))
             .attr('cx', x)
             .attr('cy', y)
@@ -89,6 +101,7 @@ function drawNewCircle(x, y, id, parent) {
                // TODO: Start hidden
             .attr('fill', "grey")
             .attr('id', id)
+            .click(onClickFunc)
             .appendTo($("svg#tree"));
 }
 
@@ -99,9 +112,6 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
     
     const PADDING = 5 
     
-//    let ax1 = x1 + (direction * 0.707 * ((NODE_RADIUS / 2) + PADDING));
-//    let ay1 = y1 + (0.707 * ((NODE_RADIUS / 2) + PADDING));
-//    
     let ax1 = x1 + (direction * ((NODE_RADIUS / 2) + PADDING));        
     let ay1 = y1;
     
