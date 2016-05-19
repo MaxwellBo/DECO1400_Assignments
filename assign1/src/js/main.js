@@ -109,15 +109,14 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
     let ay2 = y2 - NODE_RADIUS - PADDING;
     
     let dx = Math.abs(x2 - x1);
+    let dy = Math.abs(y2 - y1);
     
     
     // control point
     
     if (loop) {
         var xc = x1;
-        console.log(xc);
-        var yc = (y2);
-        console.log(yc);
+        var yc = (y2) - dy;
     }
     else {
         var xc = (x1 + dx * direction);
