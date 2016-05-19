@@ -17,8 +17,9 @@ function Node(id, left, right, seen) {
 //A list of chapters with links to other chapters. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
     "Title": new Node("Title", "Yes", "No", true),
-    "Yes": new Node("Yes", "Title", "Title", false),
-    "No": new Node("No", "Title", "Title", false)
+    "Yes": new Node("Yes", "Maybe", "Title", false),
+    "No": new Node("No", null, null, false), 
+    "Maybe": new Node("Maybe", "Title", null, false)
 };
 
 // Start of the story
