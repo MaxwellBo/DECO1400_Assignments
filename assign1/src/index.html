@@ -20,7 +20,15 @@
             <p class="takeLeft">Yes</p>
             <p class="takeRight">No</p>
             <p class="testButton">TEST BUTTON</p>
-            <svg id="tree" height="400" width="400">
+            <svg id="tree" height="800" width="800">
+                <defs>
+<!--                    https://developer.mozilla.org/en/docs/Web/SVG/Element/marker-->
+                    <marker id="arrow-head" markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12" refX="-2" refY="0" markerUnits="strokeWidth" orient="auto">
+                        <polygon points="-5,0 -5,5 5,0 -5,-5" style="fill:#000;" />
+                    </marker>
+                </defs>
+<!--                <path d="M30 50Q160 0, 300 60" />-->
+                <path d="M30 50Q160 0, 300 60" />
             </svg>
         </section>
         <section id="Yes">

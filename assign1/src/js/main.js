@@ -2,6 +2,8 @@
 let x = "disable JSLint";
 /* https://github.com/adobe/brackets/issues/11632 */
 
+const NODE_RADIUS = 10
+
 // The main datastructure
 function Node(id, left, right, seen) {
     this.id = id;
@@ -57,8 +59,12 @@ function takeRight() {
 
 
 function testButton() {
-    drawNewCircle(100,100, "1", null);
-    
+    drawArrow(100, 20, 60, 60);
+}
+
+function refreshTree() {
+    $("circle").remove();
+    renderTree(100, 20, getNode("Title"));
 }
 
 // Workaround for JQuery's inability to append to SVG
@@ -72,7 +78,7 @@ function drawNewCircle(x, y, id, parent) {
         $(SVG('circle'))
             .attr('cx', x)
             .attr('cy', y)
-            .attr('r', 10)
+            .attr('r', NODE_RADIUS)
             .attr('stroke', "black")
             .attr('stroke-width', "1")
                // TODO: Start hidden
@@ -82,6 +88,29 @@ function drawNewCircle(x, y, id, parent) {
 }
 
 // CLOSE "NOT MY CODE BLOCK"
+
+
+function drawArrow(x1, y1, x2, y2, direction) {
+    
+    // Where direction is -1 for left, 1 for right
+   
+    let ax1 = x1 + (direction * 0.707 * (NODE_RADIUS / 2));
+    let ay1 = y1 + (0.707 * (NODE_RADIUS / 2));
+    let ay2 = y2 - NODE_RADIUS;
+    
+    let dx = (x2 - x1);
+    let dy = (y2 - y1);
+    
+    // control point
+    let xc = (x1 + dx) * direction;
+    let yc = (y2 - y1);
+    
+    let pth = 'M' + ax1 + ' ' + ax2 + " Q" + xc + ' ' + yc + ", " + x2 + ' ' + ay2 
+   
+    $(SVG('path'))
+        .attr('d', "M0 0 Q50 0, 100 100")
+        .appendTo($("svg#tree"));
+}
 
 function selectCircle(id) {
     $("circle").attr('fill', "grey")

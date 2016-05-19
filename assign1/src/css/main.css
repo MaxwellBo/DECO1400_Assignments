@@ -35,3 +35,9 @@ h3 {
 	font-size: 40px;
 }
 
+path {
+  stroke-width: 3px;
+  stroke: #000;
+  marker-end:url(#arrow-head);
+  fill:none;
+}
