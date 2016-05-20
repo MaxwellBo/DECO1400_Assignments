@@ -7,15 +7,17 @@ const NODE_RADIUS = 10;
 
 // Name aliases
 const LEFT = -1;
+const STRAIGHT = 0;
 const RIGHT = 1; 
 const NO_LOOP = false;
 const LOOP = true;
 
 // The main datastructure
 // Represents a section in the story
-function Node(id, left, right, seen) {
+function Node(id, left, straight, right, seen) {
     this.id = id;
     this.left = left;
+    this.straight = straight
     this.right = right;
     this.seen = seen;
 }
@@ -23,17 +25,36 @@ function Node(id, left, right, seen) {
 // THE MODEL
 //A list of sections with links to other sections. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
-    "Title": new Node("Title", "Yes", "No", true),
-    "Yes": new Node("Yes", "Maybe", null, false),
-    "No": new Node("No", null, null, false), 
-    "Maybe": new Node("Maybe", "Title", null, false)
+    "Title": new Node("Title"
+                      , "Yes"
+                      , null
+                      , "No"
+                      , true
+                      ),
+    "Yes": new Node("Yes"
+                    , null
+                    , "Maybe"
+                    , null
+                    , false
+                    ),
+    "No": new Node("No"
+                   , null
+                   , null
+                   , null
+                   , false
+                   ), 
+    "Maybe": new Node("Maybe"
+                      , "Title"
+                      , null
+                      , null
+                      , null
+                      , false)
 };
 
 // Getter for the model
 function getNode(id) {
     return nodeMap[id];
 }
-
 
 
 // ON SITE LOAD
@@ -61,10 +82,16 @@ function takeLeft() {
     stageNode(staged.left);
 }
 
+
+function takeStraight() {
+    stageNode(staged.straight)
+}
+
 function takeRight() {
     
     stageNode(staged.right);
 }
+
 
 function stageNode(id) {
     
@@ -132,8 +159,8 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
     
     const PADDING = 5 
     
-    let ax1 = x1 + (direction * ((NODE_RADIUS / 2) + PADDING));        
-    let ay1 = y1;
+    let ax1 = x1 + (direction * NODE_RADIUS);        
+    let ay1 = y1 + (!(direction) * (NODE_RADIUS + PADDING));
     
     let ax2 = x2;
     let ay2 = y2 - NODE_RADIUS - PADDING;
@@ -175,6 +202,7 @@ function renderTree(x, y, node) {
     console.log("RENDERING " + node.id);
     
     let left = getNode(node.left);
+    let straight = getNode(node.straight)
     let right = getNode(node.right);
     
     if (left !== undefined && left.seen) {
@@ -190,6 +218,12 @@ function renderTree(x, y, node) {
             renderTree(x - 40, y + 40, left);
             drawArrow(x, y, x - 40, y + 40, LEFT, NO_LOOP);
         }
+    }
+    
+    if (straight !== undefined && straight.seen) {
+        renderTree(x, y + 40, straight);
+        drawArrow(x, y, x, y + 40, STRAIGHT, NO_LOOP)
+        
     }
     
     if (right !== undefined && right.seen) {
