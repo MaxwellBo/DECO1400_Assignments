@@ -2,32 +2,43 @@
 let x = "This string prevents JSLint from running";
 /* https://github.com/adobe/brackets/issues/11632 */
 
-/* #### TO THE MARKER ###
+/* ---------------------------------------------- */
+/* ### TO THE MARKER ### */
+/* ---------------------------------------------- */
 
+/*
 I've been told to indicate places where I've done some things, so you don't
 have to search through my code to see if I've fulfilled the necessary criteria.
 
 NOTE: Not exhaustive. 
 
-1. I manipulate the DOM "ON SITE LOAD" section and the stageNode function
-2. I manipulate the SVG model in selectCircle
-3. I bind on-click events to DOM elements and SVG elements in "ON SITE LOAD" and
-drawNewCircle respectively.
+1. I manipulate the DOM in the ENTRY POINT section and the stageNode function
+2. I manipulate the SVG model in selectNode
+3. I bind on-click events to DOM elements and SVG elements in ENTRY POINT section and
+drawNode respectively.
 4. I add hover-effects in TODO
 */
+
+/* ---------------------------------------------- */
+/* ### CONSTANTS ### */
+/* ---------------------------------------------- */
 
 
 // These constants deal mainly with appearance
 const NODE_RADIUS = 10;
 
-// Name aliases
+// Value aliases
 const LEFT = -1;
 const STRAIGHT = 0;
 const RIGHT = 1; 
 const NO_LOOP = false;
 const LOOP = true;
 
-// The main datastructure
+/* ---------------------------------------------- */
+/* ### THE MODEL ### */
+/* ---------------------------------------------- */
+
+// The main datatype
 // Represents a section in the story
 function Node(id, left, straight, right, seen) {
     this.id = id;
@@ -37,8 +48,8 @@ function Node(id, left, straight, right, seen) {
     this.seen = seen;
 }
  
-// THE MODEL
-//A list of sections with links to other sections. This is the order they should appear in the no-script version of the website.
+// The main datastrcuture
+//A hashmap of section names, to sections. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
     "Title": new Node("Title"
                       , "Yes"
@@ -71,28 +82,26 @@ function getNode(id) {
     return nodeMap[id];
 }
 
+/* ---------------------------------------------- */
+/* ### THE CONTROLLER */
+/* ---------------------------------------------- */
 
-// ON SITE LOAD
+function stageNode(id) {
+    
+    // Update the model
+    staged = getNode(id);
+    staged.seen = true;
+    
+    // Refresh the view
+    refreshTree();
+    selectNode(id);
+    
+    // Mount the requested section
+    // and unmount all others
+    $('section#' +id).show();
+    $('section:not(#' + id + ')').hide();
+}
 
-// Initialize the model
-let staged = getNode("Title");
-
-// Initialize the view
-$('section:not(#Title)').hide();
-refreshTree();
-selectCircle("Title");
-
-// Initialize the controller
-// BINDING FUNCTIONS TO DOM ELEMENTS CRITERIA
-$(".takeLeft").click(takeLeft);
-$(".takeRight").click(takeRight);
-$(".takeStraight").click(takeStraight);
-$(".testButton").click(testButton);
-// TODO: STRIP MANUAL JUMPS PAGE JUMPS WITH JQUERY
-// TODO: ADD MANUAL PAGE JUMPS
-
-
-// Aliasing controller commands
 function takeLeft() {
     stageNode(staged.left);
 }
@@ -103,25 +112,7 @@ function takeStraight() {
 }
 
 function takeRight() {
-    
     stageNode(staged.right);
-}
-
-
-function stageNode(id) {
-    
-    // Update the model
-    staged = getNode(id);
-    staged.seen = true;
-    
-    // Refresh the view
-    refreshTree();
-    selectCircle(id);
-    
-    // Mount the requested section
-    // and unmount all others
-    $('section#' +id).show();
-    $('section:not(#' + id + ')').hide();
 }
 
 
@@ -129,25 +120,25 @@ function testButton() {
     drawArrow(100, 20, 60, 60, -1);
 }
 
-function refreshTree() {
-    $("svg#tree circle").remove();
-    $("svg#tree path").remove();
-    renderTree(150, 100, getNode("Title"), 0);
-}
+/* ---------------------------------------------- */
+/* ### THE VIEW ### */
+/* ---------------------------------------------- */
 
 
 // Workaround for JQuery's inability to append to SVG properly without using a .xhtml file
 // REFERENCE: http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
-// <not my code>
+
+
+// <NOT MY CODE>
 
 function SVG(tag) {
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
 
-// </not my code>
+// </NOT MY CODE>
 
 
-function drawNewCircle(x, y, id, parent) {
+function drawNode(x, y, id, parent) {
     
     let stageNodeWithID =  function() {
         stageNode(id);
@@ -164,6 +155,11 @@ function drawNewCircle(x, y, id, parent) {
             .attr('id', id)
             .click(stageNodeWithID)
             .appendTo($("svg#tree"));
+}
+
+function selectNode(id) {
+    $("circle").attr('fill', "grey")
+    $("circle#" + id).attr('fill', "white");
 }
 
 
@@ -205,10 +201,7 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
         .appendTo($("svg#tree"));
 }
 
-function selectCircle(id) {
-    $("circle").attr('fill', "grey")
-    $("circle#" + id).attr('fill', "white");
-}
+
 
 
 // HERE BE DRAGONS
@@ -217,7 +210,7 @@ function selectCircle(id) {
 // what direction it's being drawn in and adjusting 
 // its appearance accordingly. Instead, you've got... this
 function renderTree(x, y, node, pull_tier) {
-    drawNewCircle(x, y, node.id);
+    drawNode(x, y, node.id);
     console.log("RENDERING " + node.id);
     
     let push_tier = pull_tier + 1; 
@@ -266,5 +259,31 @@ function renderTree(x, y, node, pull_tier) {
         }
     }
 }
+
+function refreshTree() {
+    $("svg#tree circle").remove();
+    $("svg#tree path").remove();
+    renderTree(150, 100, getNode("Title"), 0);
+}
+
+/* ---------------------------------------------- */
+/* ### ENTRY POINT ### */
+/* ---------------------------------------------- */
+
+// Initialize the model
+let staged = getNode("Title");
+
+// Initialize the view
+$('section:not(#Title)').hide();
+refreshTree();
+selectNode("Title");
+
+// Initialize the controller
+$(".takeLeft").click(takeLeft);
+$(".takeRight").click(takeRight);
+$(".takeStraight").click(takeStraight);
+$(".testButton").click(testButton);
+// TODO: STRIP MANUAL JUMPS PAGE JUMPS WITH JQUERY
+// TODO: ADD MANUAL PAGE JUMPS
 
 
