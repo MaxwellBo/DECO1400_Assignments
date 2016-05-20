@@ -64,6 +64,8 @@ function takeRight() {
 
 function nodeClick(id) {
     staged = getNode(id);
+    staged.seen = true;
+    selectCircle(id);
     $('section#' + staged.id).show();
     $('section:not(#' + staged.id + ')').hide();
 }
