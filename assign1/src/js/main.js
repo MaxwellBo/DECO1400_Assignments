@@ -24,14 +24,15 @@ const nodeMap = {
     "Maybe": new Node("Maybe", "Title", null, false)
 };
 
-// Start of the story
+// Initialize the model
 let staged = getNode("Title");
 
-// Progressive enhance when in noscript
+// Initialize the view
 $('section:not(#Title)').hide();
-// drawNewCircle(50, 50, "Title", null);
-// selectCircle("Title");
+
+// Render the view
 renderTree(300, 100, staged);
+selectCircle("Title");
 
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
@@ -45,29 +46,19 @@ function getNode(id) {
 }
 
 function takeLeft() {
-    staged = getNode(staged.left);
-    staged.seen = true;
-    $('section#' + staged.id).show()
-    $('section:not(#' + staged.id + ')').hide();
-    console.log("Went left");
-    return staged; // prevents use of <a onClick...
+    nodeClick(staged.left);
 }
 
 function takeRight() {
-    staged = getNode(staged.right);
-    staged.seen = true;
-    $('section#' + staged.id).show()
-    $('section:not(#' + staged.id + ')').hide();
-    console.log("Went right");
-    return staged;
+    nodeClick(staged.right);
 }
 
 function nodeClick(id) {
     staged = getNode(id);
     staged.seen = true;
     selectCircle(id);
-    $('section#' + staged.id).show();
-    $('section:not(#' + staged.id + ')').hide();
+    $('section#' +id).show();
+    $('section:not(#' + id + ')').hide();
 }
 
 
