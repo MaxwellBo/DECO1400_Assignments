@@ -50,6 +50,7 @@ selectCircle("Title");
 // BINDING FUNCTIONS TO DOM ELEMENTS CRITERIA
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
+$(".takeStraight").click(takeStraight);
 $(".testButton").click(testButton);
 // TODO: STRIP MANUAL JUMPS PAGE JUMPS WITH JQUERY
 // TODO: ADD MANUAL PAGE JUMPS
@@ -91,7 +92,7 @@ function testButton() {
 function refreshTree() {
     $("svg#tree circle").remove();
     $("svg#tree path").remove();
-    renderTree(300, 100, getNode("Title"));
+    renderTree(150, 100, getNode("Title"));
 }
 
 
@@ -166,10 +167,10 @@ function selectCircle(id) {
     $("circle#" + id).attr('fill', "white");
 }
 
+
+// This function caused great pain and suffering
+// Treat it as your equal, as it shall show no mercy.
 function renderTree(x, y, node) {
-    
-    
-    // if node.seen === true;
     drawNewCircle(x, y, node.id);
     console.log("RENDERING " + node.id);
     
@@ -182,7 +183,7 @@ function renderTree(x, y, node) {
             let cx = $("circle#" + left.id).attr('cx');
             let cy = $("circle#" + left.id).attr('cy');
             
-            drawArrow(x, y, cx, cy, LEFT, LOOP);
+            drawArrow(x, y, cx - NODE_RADIUS, cy, LEFT, LOOP);
         }
     
         else {
@@ -197,7 +198,7 @@ function renderTree(x, y, node) {
             let cx = $("circle#" + right.id).attr('cx');
             let cy = $("circle#" + right.id).attr('cy');
             
-            drawArrow(x, y, cx, cy, RIGHT, LOOP);
+            drawArrow(x, y, cx + NODE_RADIUS, cy, RIGHT, LOOP);
         }
         
         else {
