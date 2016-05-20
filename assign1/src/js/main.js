@@ -1,6 +1,21 @@
 'use strict';
-let x = "disable JSLint";
+let x = "This string prevents JSLint from running";
 /* https://github.com/adobe/brackets/issues/11632 */
+
+/* #### TO THE MARKER ###
+
+I've been told to indicate places where I've done some things, so you don't
+have to search through my code to see if I've fulfilled the necessary criteria.
+
+NOTE: Not exhaustive. 
+
+1. I manipulate the DOM "ON SITE LOAD" section and the stageNode function
+2. I manipulate the SVG model in selectCircle
+3. I bind on-click events to DOM elements and SVG elements in "ON SITE LOAD" and
+drawNewCircle respectively.
+4. I add hover-effects in TODO
+*/
+
 
 // These constants deal mainly with appearance
 const NODE_RADIUS = 10;
@@ -105,8 +120,6 @@ function stageNode(id) {
     
     // Mount the requested section
     // and unmount all others
-    
-    // DOM MANIPULATION CRITERIA
     $('section#' +id).show();
     $('section:not(#' + id + ')').hide();
 }
@@ -154,23 +167,26 @@ function drawNewCircle(x, y, id, parent) {
 }
 
 
-
 function drawArrow(x1, y1, x2, y2, direction, loop) {
+    // Where direction is -1, 0, 1 for left, straight, right
+    // Where loop is a boolean
     
-    const PADDING = 5 
+    // Do you want the arrow to touch its target?
+    const PADDING = 5
     
+    // Start from LHS, bottom side or RHS of the origin node
     let ax1 = x1 + (direction * NODE_RADIUS);        
     let ay1 = y1 + (!(direction) * (NODE_RADIUS + PADDING));
-    
+   
+    // Always arrive at the top of the destination node
     let ax2 = x2;
     let ay2 = y2 - NODE_RADIUS - PADDING;
     
     let dx = Math.abs(x2 - x1);
     let dy = Math.abs(y2 - y1);
     
-    
-    // control point
-    
+    // Loops (backtracking) don't go straight to their target
+    // They do a funny bendy thing
     if (loop) {
         var xc = x1;
         var yc = (y2) - dy;
@@ -179,8 +195,8 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
         var xc = (x1 + dx * direction);
         var yc = (y1);
     }
-
     
+    // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
     let pth = 'M' +  ax1 + ' ' + ay1 + " Q" + xc + ' ' + yc + ", " + ax2 + ' ' + ay2;
     
    
@@ -196,6 +212,10 @@ function selectCircle(id) {
 
 
 // HERE BE DRAGONS
+// In all honesty, this is pretty god-awful code. 
+// It could probably be simplified by having the draw arrow auto-detect 
+// what direction it's being drawn in and adjusting 
+// its appearance accordingly. Instead, you've got... this
 function renderTree(x, y, node, pull_tier) {
     drawNewCircle(x, y, node.id);
     console.log("RENDERING " + node.id);
