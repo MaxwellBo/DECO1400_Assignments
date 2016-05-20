@@ -24,16 +24,21 @@ const nodeMap = {
     "Maybe": new Node("Maybe", "Title", null, false)
 };
 
+// Model helper
+function getNode(id) {
+    return nodeMap[id];
+}
+
 // Initialize the model
 let staged = getNode("Title");
 
 // Initialize the view
 $('section:not(#Title)').hide();
-
-// Render the view
-renderTree(300, 100, staged);
+refreshTree();
 selectCircle("Title");
 
+
+// Initialize the controller
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
 $(".testButton").click(testButton);
@@ -41,21 +46,24 @@ $(".testButton").click(testButton);
 // TODO: ADD MANUAL PAGE JUMPS
 
 
-function getNode(id) {
-    return nodeMap[id];
-}
-
+// Aliasing controller commands
 function takeLeft() {
-    nodeClick(staged.left);
+    stageNode(staged.left);
 }
 
 function takeRight() {
-    nodeClick(staged.right);
+    
+    stageNode(staged.right);
 }
 
-function nodeClick(id) {
+function stageNode(id) {
+    
+    // Update the model
     staged = getNode(id);
     staged.seen = true;
+    
+    // Refresh the view
+    refreshTree();
     selectCircle(id);
     $('section#' +id).show();
     $('section:not(#' + id + ')').hide();
@@ -68,21 +76,26 @@ function testButton() {
 
 function refreshTree() {
     $("circle").remove();
-    renderTree(100, 20, getNode("Title"));
+    $("path").remove();
+    renderTree(300, 100, getNode("Title"));
 }
 
-// Workaround for JQuery's inability to append to SVG
-// http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
-// OPEN "NOT MY CODE BLOCK"
+
+// Workaround for JQuery's inability to append to SVG properly without using a .xhtml file
+// REFERENCE: http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
+// <not my code>
+
 function SVG(tag) {
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
 
+// </not my code>
+
+
 function drawNewCircle(x, y, id, parent) {
     
-    let onClickFunc =  function() {
-        console.log("IMMEDIATE CLICK")
-        nodeClick(id);
+    let stageNodeWithID =  function() {
+        stageNode(id);
     }
     
         $(SVG('circle'))
@@ -94,11 +107,10 @@ function drawNewCircle(x, y, id, parent) {
                // TODO: Start hidden
             .attr('fill', "grey")
             .attr('id', id)
-            .click(onClickFunc)
+            .click(stageNodeWithID)
             .appendTo($("svg#tree"));
 }
 
-// CLOSE "NOT MY CODE BLOCK"
 
 
 function drawArrow(x1, y1, x2, y2, direction, loop) {
@@ -150,33 +162,26 @@ function renderTree(x, y, node) {
     let left = getNode(node.left);
     let right = getNode(node.right);
     
-    if (left !== undefined) {
+    if (left !== undefined && left.seen) {
         
         if ($("circle#" + left.id).length) {
             let cx = $("circle#" + left.id).attr('cx');
             let cy = $("circle#" + left.id).attr('cy');
-            
-            console.log(cx);
-            console.log(cy);
-    
             
             drawArrow(x, y, cx, cy, LEFT, LOOP);
         }
     
         else {
             renderTree(x - 40, y + 40, left);
-            drawArrow(x, y, x - 40, y + 40, LEFT);
+            drawArrow(x, y, x - 40, y + 40, LEFT, NO_LOOP);
         }
     }
     
-    if (right !== undefined) {
+    if (right !== undefined && right.seen) {
         
         if ($("circle#" + right.id).length) {
             let cx = $("circle#" + right.id).attr('cx');
             let cy = $("circle#" + right.id).attr('cy');
-            
-            console.log(cx);
-            console.log(cy);
             
             drawArrow(x, y, cx, cy, RIGHT, LOOP);
         }
@@ -187,4 +192,5 @@ function renderTree(x, y, node) {
         }
     }
 }
+
 
