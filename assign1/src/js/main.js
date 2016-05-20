@@ -27,13 +27,13 @@ function Node(id, left, straight, right, seen) {
 const nodeMap = {
     "Title": new Node("Title"
                       , "Yes"
-                      , null
+                      , "Maybe"
                       , "No"
                       , true
                       ),
     "Yes": new Node("Yes"
                     , null
-                    , "Maybe"
+                    , null
                     , null
                     , false
                     ),
@@ -119,7 +119,7 @@ function testButton() {
 function refreshTree() {
     $("svg#tree circle").remove();
     $("svg#tree path").remove();
-    renderTree(150, 100, getNode("Title"));
+    renderTree(150, 100, getNode("Title"), 0);
 }
 
 
@@ -195,15 +195,20 @@ function selectCircle(id) {
 }
 
 
-// This function caused great pain and suffering
-// Treat it as your equal, as it shall show no mercy.
-function renderTree(x, y, node) {
+// HERE BE DRAGONS
+function renderTree(x, y, node, pull_tier) {
     drawNewCircle(x, y, node.id);
     console.log("RENDERING " + node.id);
+    
+    let push_tier = pull_tier + 1; 
     
     let left = getNode(node.left);
     let straight = getNode(node.straight)
     let right = getNode(node.right);
+    
+    
+    const VERTICAL_SPACING = 60 - (20 * pull_tier);
+    const HORIZONTAL_SPACING = 40 - (20 * pull_tier);
     
     if (left !== undefined && left.seen) {
         
@@ -211,18 +216,18 @@ function renderTree(x, y, node) {
             let cx = $("circle#" + left.id).attr('cx');
             let cy = $("circle#" + left.id).attr('cy');
             
-            drawArrow(x, y, cx - NODE_RADIUS, cy, LEFT, LOOP);
+            drawArrow(x, y, cx - NODE_RADIUS, cy, LEFT, LOOP, push_tier);
         }
     
         else {
-            renderTree(x - 40, y + 40, left);
-            drawArrow(x, y, x - 40, y + 40, LEFT, NO_LOOP);
+            renderTree(x - HORIZONTAL_SPACING, y + VERTICAL_SPACING, left, push_tier);
+            drawArrow(x, y, x - HORIZONTAL_SPACING , y + VERTICAL_SPACING, LEFT, NO_LOOP);
         }
     }
     
     if (straight !== undefined && straight.seen) {
-        renderTree(x, y + 40, straight);
-        drawArrow(x, y, x, y + 40, STRAIGHT, NO_LOOP)
+        renderTree(x, y + VERTICAL_SPACING, straight);
+        drawArrow(x, y, x, y + VERTICAL_SPACING, STRAIGHT, NO_LOOP, push_tier)
         
     }
     
@@ -232,12 +237,12 @@ function renderTree(x, y, node) {
             let cx = $("circle#" + right.id).attr('cx');
             let cy = $("circle#" + right.id).attr('cy');
             
-            drawArrow(x, y, cx + NODE_RADIUS, cy, RIGHT, LOOP);
+            drawArrow(x, y, cx + NODE_RADIUS, cy, RIGHT, LOOP, push_tier);
         }
         
         else {
-            renderTree(x + 40, y + 40, right);
-            drawArrow(x, y, x + 40, y + 40, RIGHT, NO_LOOP);
+            renderTree(x + HORIZONTAL_SPACING, y + VERTICAL_SPACING, right, push_tier);
+            drawArrow(x, y, x + HORIZONTAL_SPACING, y + VERTICAL_SPACING, RIGHT, NO_LOOP);
         }
     }
 }
