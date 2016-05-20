@@ -2,13 +2,17 @@
 let x = "disable JSLint";
 /* https://github.com/adobe/brackets/issues/11632 */
 
+// These constants deal mainly with appearance
 const NODE_RADIUS = 10;
+
+// Name aliases
 const LEFT = -1;
-const RIGHT = 1;
+const RIGHT = 1; 
 const NO_LOOP = false;
 const LOOP = true;
 
 // The main datastructure
+// Represents a section in the story
 function Node(id, left, right, seen) {
     this.id = id;
     this.left = left;
@@ -16,7 +20,8 @@ function Node(id, left, right, seen) {
     this.seen = seen;
 }
  
-//A list of chapters with links to other chapters. This is the order they should appear in the no-script version of the website.
+// THE MODEL
+//A list of sections with links to other sections. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
     "Title": new Node("Title", "Yes", "No", true),
     "Yes": new Node("Yes", "Maybe", null, false),
@@ -24,10 +29,14 @@ const nodeMap = {
     "Maybe": new Node("Maybe", "Title", null, false)
 };
 
-// Model helper
+// Getter for the model
 function getNode(id) {
     return nodeMap[id];
 }
+
+
+
+// ON SITE LOAD
 
 // Initialize the model
 let staged = getNode("Title");
@@ -37,8 +46,8 @@ $('section:not(#Title)').hide();
 refreshTree();
 selectCircle("Title");
 
-
 // Initialize the controller
+// BINDING FUNCTIONS TO DOM ELEMENTS CRITERIA
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
 $(".testButton").click(testButton);
@@ -65,6 +74,11 @@ function stageNode(id) {
     // Refresh the view
     refreshTree();
     selectCircle(id);
+    
+    // Mount the requested section
+    // and unmount all others
+    
+    // DOM MANIPULATION CRITERIA
     $('section#' +id).show();
     $('section:not(#' + id + ')').hide();
 }
@@ -75,8 +89,8 @@ function testButton() {
 }
 
 function refreshTree() {
-    $("circle").remove();
-    $("path").remove();
+    $("svg#tree circle").remove();
+    $("svg#tree path").remove();
     renderTree(300, 100, getNode("Title"));
 }
 
