@@ -23,7 +23,6 @@ drawNode respectively.
 /* ### CONSTANTS ### */
 /* ---------------------------------------------- */
 
-
 // These constants deal mainly with appearance
 const NODE_RADIUS = 10;
 
@@ -200,8 +199,6 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
         .attr('d', pth)
         .appendTo($("svg#tree"));
 }
-
-
 
 
 // HERE BE DRAGONS

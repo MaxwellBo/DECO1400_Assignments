@@ -13,59 +13,61 @@
 ## NOTICE!!!
 You are about to find yourself trapped on a strange and dangerous island on one of the most forbidding planets in the galaxy: Tenopia. It's important that you follow the directions in this book if you hope to escape!
 
-During your travels on Tenopia lsland, you'll have a small computer that can project a map of the region you're in at any moment. To use this, flip to the map page indicated near the bottom of the page you're reading. (When you turn to a map page, be sure to keep a finger on the page you're reading so you won't lose your place.)
+During your travels on Tenopia Island, you'll have a small computer that can project a map of the region you're in at any moment. To use this, flip to the map page indicated near the bottom of the page you're reading. (When you turn to a map page, be sure to keep a finger on the page you're reading so you won't lose your place.)
 
-Whether or not you escape from Tenopia Island will depend on how skillful you are, how persistent you are, and how lucky you are. Will you succeed-or will you be trapped Forever? It's entirely up to you!
+Whether or not you escape from Tenopia Island will depend on how skilful you are, how persistent you are, and how lucky you are. Will you succeed-or will you be trapped Forever? It's entirely up to you!
 
-# SECTION 1
+### SECTION 1
 
-While you are traveling on a diplomatic mission from Earth to the Mylaean Cluster, your spaceship is hit by a meteor. With seconds lo spare, you jettison in an escape pod, the only survivor. The pod's built-in computer indicates there is only enough fuel to reach Tenopia, the fifth planet of Star System Tenopia. The computer’s memory bank supplies you with the folllowing information:
-
+While you are traveling on a diplomatic mission from Earth to the Mylaean Cluster, your spaceship is hit by a meteor. With seconds lo spare, you jettison in an escape pod, the only survivor. The pod's built-in computer indicates there is only enough fuel to reach Tenopia, the fifth planet of Star System Tenopia. The computer’s memory bank supplies you with the following information:
 
 ```
-TENOPIA: 4/5 Earth size; rotation 26 hours; sun rises in the east, sets in west; revolution 587 days; air quality excellent; food and wa- ler abundant; surface 80% ocean with one large island (Tbnopia lsland) and a single continent (Kabran); ocean is subject to violent storms; galactic language widely spoken; technology generally medieval; travel dangerous and not advised.
+TENOPIA: 4/5 Earth size; rotation 26 hours; sun rises in the east, sets in west; revolution 587 days; air quality excellent; food and water abundant; surface 80% ocean with one large island (Tenopia Island) and a single continent (Kabran); ocean is subject to violent storms; galactic language widely spoken; technology generally medieval; travel dangerous and not advised.
 ```
-
 
 Bracing yourself for entry into Tenopia's atmosphere, you examine your only survival equipment- a pocket-sized computer that is programmed to project a map of your region at all times on a small video screen.
 
 Suddenly, on the pod's computer, you read:
 
-_Entry Phase: landing targeted near Krelia, west coast of Tenopia Island.
-
-
-
-
-
+_Entry Phase: landing targeted near Krelia, west coast of Tenopia Island._
 
 A moment later the words “Tenopia Island" appear, and this aerial view is displayed:
 
 
-MAP
+### MAP
 
 TODO: LINK IMAGE
 
-PROCEED
 
 
-Your tiny craft sets down with a sharp jolt.
-You lie dazed for a few minutes before you can pull yourself together. By the time you crawl through the hatch, your pod is already surrounded by giant half-human creatures with huge forked hands. They blindfold you and lead you along a winding bumpy surface, then down a long ladder thai leads deep underground. At last they remove your blindfold. You are in a huge dimly lit cavern that reeks of sulfurous fumes. The creatures search you. You hold your breath when they find your computer. But they toss it aside as a useless ornament, and you're able to retrieve it a few moments later.
-You quickly learn that your captors are crogocides and thdi you have been condemned to slavery in their krelium mine. Closely watched by crogocide guards wielding long spiked sticks, you are forced to chip and shovel krelium ore for seven hours before you're allowed to resi for the night.
+Your tiny craft sets down with a sharp jolt. You lie dazed for a few minutes before you can pull yourself together. By the time you crawl through the hatch, your pod is already surrounded by giant half-human creatures with huge forked hands. They blindfold you and lead you along a winding bumpy surface, then down a long ladder thai leads deep underground. At last they remove your blindfold. You are in a huge dimly lit cavern that reeks of sulfurous fumes. 
+
+The creatures search you. You hold your breath when they find your computer. But they toss it aside as a useless ornament, and you're able to retrieve it a few moments later.
+You quickly learn that your captors are crogocides and that you have been condemned to slavery in their krelium mine. Closely watched by crogocide guards wielding long spiked sticks, you are forced to chip and shovel krelium ore for seven hours before you're allowed to rest for the night.
+
 Most of the slaves speak the galactic language, and during the days that follow you make friends with Prespar, an old hominid from a nearby planet. He looks almost as human as yourself.
-When you ask whether there is any hope of escape from the mine, Prespar merely shakes his head. But that night, while lhere are no crogocides nearby, he comes to you and whispers, "There is a secret tunnel that leads lo the surface. Tomorrow I will show you the slab that hides the entrance."
-"How do I get to the nearest galactic patrol
-sta- tion?" you whisper back.
-h,
-Turn to page
-10.
-________________
-7 I
-A few minutes later, three crogocides seize you. Blindfolded, hands tied behind your back, you're transported by cart and by boat and again by cart to i,l
-the krelium mine. There you are sei to ihe
-same grueling work-chipping and shoveling, chipping and shoveling.
+
+When you ask whether there is any hope of escape from the mine, Prespar merely shakes his head. But that night, while there are no crogocides nearby, he comes to you and whispers, "There is a secret tunnel that leads lo the surface. Tomorrow I will show you the slab that hides the entrance."
+
+"How do I get to the nearest galactic patrol station?" you whisper back.
+
+A few minutes later, three crogocides seize you. Blindfolded, hands tied behind your back, you're transported by cart and by boat and again by cart to the krelium mine. There you are set to the
+same gruelling work-chipping and shoveling, chipping and shoveling.
+
 This time you're watched more closely than ever by the crogocide guards. Several days pass before you have a chance to pull back the slab covering the secret tunnel.
-Your heart is in your mouth because you're afraid you'll find the passageway sealed off. But it's still open! Soon you're standing once again on the sur- face of Tenopia! You're only at the beginning o{ your journey, but at leasi you know a lot more than before.
-TO CHECK MAB SEE PAGE 17.
+
+Your heart is in your mouth because you're afraid you'll find the passageway sealed off. But it's still open! Soon you're standing once again on the surface of Tenopia! You're only at the beginning of your journey, but at least you know a lot more than before.
+
+# MAP JUMP
+
+# HEAD NORTHEAST
+# HEAD SOUTH
+
+
+
+
+
+
 lf you head northeast, turn to page 20. I
 lf you head south, turn lo page
 16.
@@ -159,9 +161,14 @@ ________________
 r"
 I'
 r6
-fu you walk along the road, the orange sunlight sireaming through yellow-lea{ed trees produces
-a misty light like nothing you've ever seen. Afler several hours of travel, you hear weird, rhythmic music ahead-a chorus of voices running up and down the scale, changing from dissonance to harmony.
-!f you have visited the red-winged bird people before, turn to page 8. If not, read on....
+
+
+
+As you walk along the road, the orange sunlight streaming through yellow-lea{ed trees produces
+a misty light like nothing you've ever seen. After several hours of travel, you hear weird, rhythmic music ahead-a chorus of voices running up and down the scale, changing from dissonance to harmony.
+
+
+If you have visited the red-winged bird people before, turn to page 8. If not, read on....
 You are drawn to the sound, but before you
 can reach its source, two bird people with dark red wings spring from behind a tree. The music stops, and in
 a moment a dozen more bird people gather around you. They seem friendly, and you waste no time
