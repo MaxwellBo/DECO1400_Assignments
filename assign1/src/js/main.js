@@ -194,24 +194,21 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
         .appendTo($("svg#tree"));
 }
 
-
 // HERE BE DRAGONS
-// In all honesty, this is pretty god-awful code. 
+// In all honesty, this is pretty bad code. 
 // It could probably be simplified by having the draw arrow auto-detect 
 // what direction it's being drawn in and adjusting 
 // its appearance accordingly. Instead, you've got... this
-function renderTree(x, y, node, pull_tier) {
+function renderTree(x, y, node, tier) {
     drawNode(x, y, node.id);
     console.log("RENDERING " + node.id);
-    
-    let push_tier = pull_tier + 1; 
     
     let left = getNode(node.left);
     let straight = getNode(node.straight)
     let right = getNode(node.right);
     
-    const VERTICAL_SPACING = 60 - (20 * pull_tier);
-    const HORIZONTAL_SPACING = 40 - (20 * pull_tier);
+    const X_SHIFT = 40 - (20 * tier);
+    const Y_SHIFT = 60 - (20 * tier);
     
     if (left !== undefined && left.seen) {
         
@@ -219,18 +216,17 @@ function renderTree(x, y, node, pull_tier) {
             let cx = $("circle#" + left.id).attr('cx');
             let cy = $("circle#" + left.id).attr('cy');
             
-            drawArrow(x, y, cx - NODE_RADIUS, cy, LEFT, LOOP, push_tier);
+            drawArrow(x, y, cx - NODE_RADIUS, cy, LEFT, LOOP);
         }
-    
         else {
-            renderTree(x - HORIZONTAL_SPACING, y + VERTICAL_SPACING, left, push_tier);
-            drawArrow(x, y, x - HORIZONTAL_SPACING , y + VERTICAL_SPACING, LEFT, NO_LOOP);
+            renderTree(x - X_SHIFT, y + Y_SHIFT, left, tier + 1);
+            drawArrow(x, y, x - X_SHIFT , y + Y_SHIFT, LEFT, NO_LOOP);
         }
     }
     
     if (straight !== undefined && straight.seen) {
-        renderTree(x, y + VERTICAL_SPACING, straight);
-        drawArrow(x, y, x, y + VERTICAL_SPACING, STRAIGHT, NO_LOOP, push_tier)
+        renderTree(x, y + Y_SHIFT, straight, tier + 1);
+        drawArrow(x, y, x, y + Y_SHIFT, STRAIGHT, NO_LOOP)
         
     }
     
@@ -240,12 +236,11 @@ function renderTree(x, y, node, pull_tier) {
             let cx = $("circle#" + right.id).attr('cx');
             let cy = $("circle#" + right.id).attr('cy');
             
-            drawArrow(x, y, cx + NODE_RADIUS, cy, RIGHT, LOOP, push_tier);
+            drawArrow(x, y, cx + NODE_RADIUS, cy, RIGHT, LOOP)
         }
-        
         else {
-            renderTree(x + HORIZONTAL_SPACING, y + VERTICAL_SPACING, right, push_tier);
-            drawArrow(x, y, x + HORIZONTAL_SPACING, y + VERTICAL_SPACING, RIGHT, NO_LOOP);
+            renderTree(x + X_SHIFT, y + Y_SHIFT, right, tier + 1);
+            drawArrow(x, y, x + X_SHIFT, y + Y_SHIFT, RIGHT, NO_LOOP);
         }
     }
 }
