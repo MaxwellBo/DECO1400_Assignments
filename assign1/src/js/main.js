@@ -167,10 +167,6 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
     // Start from LHS, bottom side or RHS of the origin node
     let ax1 = x1 + (direction * NODE_RADIUS);        
     let ay1 = y1 + (!(direction) * (NODE_RADIUS + PADDING));
-   
-    // Always arrive at the top of the destination node
-    let ax2 = x2;
-    let ay2 = y2 - NODE_RADIUS - PADDING;
     
     let dx = Math.abs(x2 - x1);
     let dy = Math.abs(y2 - y1);
@@ -185,6 +181,10 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
         var xc = (x1 + dx * direction);
         var yc = (y1);
     }
+    
+    // Always arrive at the top of the destination node
+    let ax2 = x2;
+    let ay2 = y2 - NODE_RADIUS - PADDING;
     
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
     let pth = 'M' +  ax1 + ' ' + ay1 + " Q" + xc + ' ' + yc + ", " + ax2 + ' ' + ay2;
