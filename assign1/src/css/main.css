@@ -1,3 +1,6 @@
+/* ---------------------------------------------- */
+/* ### THE SITE MAP STYLING ### */
+/* ---------------------------------------------- */
 
 nav {
     background: #f2f4f0;
@@ -24,10 +27,12 @@ nav svg path {
   fill:none;
 }
 
+/* ---------------------------------------------- */
+/* ### THE STORY STYLING ### */
+/* ---------------------------------------------- */
 
 article {
     display: inline-block;
-    
     font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 /*    font-family: Cambria,Georgia,serif;*/
     margin-left: 300px;
@@ -38,18 +43,14 @@ article {
     padding: 10px 40px;
 }
 
-
 h1, h2, h3 {
-    line-height: 1.2;
     font-family: 'Chelsea Market', Georgia, serif;
+    line-height: 1.2;
 	margin: 0;
 }
 
 h1 {
 	font-size: 80px;
-}
-
-section#Title h1 {
 }
 
 
@@ -61,7 +62,13 @@ h3 {
 	font-size: 40px;
 }
 
+section#Title h1 {
+    text-align: center;
+}
 
+/* ---------------------------------------------- */
+/* ### HELPER STYLES ### */
+/* ---------------------------------------------- */
 
 .reverse {
     -moz-transform: scale(-1, 1);
