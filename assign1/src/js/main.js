@@ -123,17 +123,13 @@ function testButton() {
 /* ### THE VIEW ### */
 /* ---------------------------------------------- */
 
-
 // Workaround for JQuery's inability to append to SVG properly without using a .xhtml file
 // REFERENCE: http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
 
-
 // <NOT MY CODE>
-
 function SVG(tag) {
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
-
 // </NOT MY CODE>
 
 
@@ -149,7 +145,6 @@ function drawNode(x, y, id, parent) {
             .attr('r', NODE_RADIUS)
             .attr('stroke', "black")
             .attr('stroke-width', "1")
-               // TODO: Start hidden
             .attr('fill', "grey")
             .attr('id', id)
             .click(stageNodeWithID)
@@ -194,7 +189,6 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
     let pth = 'M' +  ax1 + ' ' + ay1 + " Q" + xc + ' ' + yc + ", " + ax2 + ' ' + ay2;
     
-   
     $(SVG('path'))
         .attr('d', pth)
         .appendTo($("svg#tree"));
@@ -215,7 +209,6 @@ function renderTree(x, y, node, pull_tier) {
     let left = getNode(node.left);
     let straight = getNode(node.straight)
     let right = getNode(node.right);
-    
     
     const VERTICAL_SPACING = 60 - (20 * pull_tier);
     const HORIZONTAL_SPACING = 40 - (20 * pull_tier);

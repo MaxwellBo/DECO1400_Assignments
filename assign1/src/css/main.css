@@ -1,24 +1,3 @@
-.reverse {
-    -moz-transform: scale(-1, 1);
-    -webkit-transform: scale(-1, 1);
-    -o-transform: scale(-1, 1);
-    -ms-transform: scale(-1, 1);
-    transform: scale(-1, 1);
-}
-
-article {
-    display: inline-block;
-    
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-/*    font-family: Cambria,Georgia,serif;*/
-    margin-left: 300px;
-    max-width: 650px;
-    line-height: 1.6;
-    font-size: 18px;
-    color: #444444;
-    padding: 10px 40px;
-}
-
 
 nav {
     background: #f2f4f0;
@@ -38,6 +17,28 @@ nav svg {
     viewbox: 0 0 0 0;
 }
 
+nav svg path {
+  stroke-width: 2px;
+  stroke: rgba(38, 38, 38, 0.58);
+  marker-end:url(#arrow-head);
+  fill:none;
+}
+
+
+article {
+    display: inline-block;
+    
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+/*    font-family: Cambria,Georgia,serif;*/
+    margin-left: 300px;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444444;
+    padding: 10px 40px;
+}
+
+
 h1, h2, h3 {
     line-height: 1.2;
     font-family: 'Chelsea Market', Georgia, serif;
@@ -48,6 +49,10 @@ h1 {
 	font-size: 80px;
 }
 
+section#Title h1 {
+}
+
+
 h2 {
 	font-size: 60px;
 }
@@ -56,9 +61,12 @@ h3 {
 	font-size: 40px;
 }
 
-path {
-  stroke-width: 2px;
-  stroke: rgba(38, 38, 38, 0.58);
-  marker-end:url(#arrow-head);
-  fill:none;
+
+
+.reverse {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
 }
