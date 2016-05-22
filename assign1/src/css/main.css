@@ -29,11 +29,16 @@ green:     #859900;
 /* ### THE SITE MAP STYLING ### */
 /* ---------------------------------------------- */
 
+body {
+    height: 100%;
+    width: 100%;
+}
+
 nav {
     background: #eee8d5;
     background-image: url("../img/small_steps.png");
     display:inline-block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left:0;
     height: 100%;
@@ -60,12 +65,13 @@ nav svg path {
 /* ---------------------------------------------- */
 
 article {
-    display: inline-block;
+/*    display: inline-block;*/
     background: #fdf6e3; /* base3 */
     margin-left: 300px;
     max-width: 650px;
     padding: 10px 40px;
-    overflow: auto;
+    height: 100%;
+/*    overflow: auto;*/
     
     
     /*    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;*/
@@ -89,7 +95,6 @@ h1 {
 	font-size: 80px;
     color: #073642;
 }
-
 
 h2 {
 	font-size: 60px;
