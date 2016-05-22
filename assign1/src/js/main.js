@@ -64,9 +64,9 @@ const nodeMap = {
                       , true
                       ),
     "FOLLOW": new Node("FOLLOW"
+                    , "ESCAPE"
                     , "ACCEPT"
                     , null
-                    , "ESCAPE"
                     , false
                     ),
     "HOTEL": new Node("HOTEL"
@@ -87,6 +87,30 @@ const nodeMap = {
                    , null
                    , false
                    ), 
+    "ACCEPT": new Node("ACCEPT"
+                   , null
+                   , null  
+                   , null
+                   , false
+                   ), 
+    "PILLOW": new Node("PILLOW"
+                   , null
+                   , null  
+                   , null
+                   , false
+                   ), 
+    "THREATEN": new Node("THREATEN"
+                   , null
+                   , null  
+                   , null
+                   , false
+                   ), 
+    "KNOWING": new Node("KNOWING"
+                   , null
+                   , null  
+                   , null
+                   , false
+                   ), 
 };
 
 // Getter for the model
@@ -100,7 +124,7 @@ function getNode(id) {
 
 function stageNode(id) {
     
-    console.log("STAGING" + id)
+    console.log("STAGING " + id)
     
     // Update the model
     staged = getNode(id);
@@ -224,8 +248,8 @@ function renderTree(x, y, node, tier) {
     let straight = getNode(node.straight)
     let right = getNode(node.right);
     
-    const X_SHIFT = 40 - (20 * tier);
-    const Y_SHIFT = 60 - (20 * tier);
+    const X_SHIFT = 50 - (3 * tier);
+    const Y_SHIFT = 60 - (5 * tier);
     
     if (left !== undefined && left.seen) {
         
