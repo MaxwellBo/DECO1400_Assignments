@@ -31,6 +31,7 @@ green:     #859900;
 
 nav {
     background: #eee8d5;
+    background-image: url("../img/small_steps.png");
     display:inline-block;
     position: absolute;
     top: 0;
@@ -49,7 +50,7 @@ nav svg {
 
 nav svg path {
   stroke-width: 2px;
-  stroke: rgba(38, 38, 38, 0.58);
+  stroke: #002b36;
   marker-end:url(#arrow-head);
   fill:none;
 }
@@ -60,10 +61,11 @@ nav svg path {
 
 article {
     display: inline-block;
-    background: #fdf6e3; /* base3*/
+    background: #fdf6e3; /* base3 */
     margin-left: 300px;
     max-width: 650px;
     padding: 10px 40px;
+    overflow: auto;
     
     
     /*    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;*/
