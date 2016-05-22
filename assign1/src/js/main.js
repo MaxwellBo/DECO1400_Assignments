@@ -124,6 +124,9 @@ function getNode(id) {
 
 function stageNode(id) {
     
+    // Cache the current model
+    former = staged;
+    
     console.log("STAGING " + id)
     
     // Update the model
@@ -146,7 +149,6 @@ function takeLeft() {
     stageNode(staged.left);
 }
 
-
 function takeStraight() {
     stageNode(staged.straight)
 }
@@ -155,9 +157,8 @@ function takeRight() {
     stageNode(staged.right);
 }
 
-
-function testButton() {
-    drawArrow(100, 20, 60, 60, -1);
+function backButton() {
+    stageNode(former.id);
 }
 
 /* ---------------------------------------------- */
@@ -180,16 +181,21 @@ function drawNode(x, y, id, parent) {
         stageNode(id);
     }
     
-        $(SVG('circle'))
-            .attr('cx', x)
-            .attr('cy', y)
-            .attr('r', NODE_RADIUS)
-            .attr('stroke', "#073642")
-            .attr('stroke-width', "2")
-            .attr('fill', "#839496")
-            .attr('id', id)
-            .click(stageNodeWithID)
-            .appendTo($("svg#tree"));
+    
+    // "Shouldn't this be in the stylesheet?"
+    // SVG has some weird interactions with the styleshet
+    // The nodes were coming in partially styled
+    // Work-around: style them JIT
+    $(SVG('circle'))
+        .attr('cx', x)
+        .attr('cy', y)
+        .attr('r', NODE_RADIUS)
+        .attr('stroke', "#073642")
+        .attr('stroke-width', "2")
+        .attr('fill', "#839496")
+        .attr('id', id)
+        .click(stageNodeWithID)
+        .appendTo($("svg#tree"));
 }
 
 function selectNode(id) {
@@ -298,6 +304,7 @@ function refreshTree() {
 
 // Initialize the model
 let staged = getNode("TITLE");
+let former = getNode("TITLE")
 
 // Initialize the view
 $('section:not(#TITLE)').hide();
@@ -308,8 +315,7 @@ selectNode("TITLE");
 $(".takeLeft").click(takeLeft);
 $(".takeRight").click(takeRight);
 $(".takeStraight").click(takeStraight);
-$(".testButton").click(testButton);
-// TODO: STRIP MANUAL JUMPS PAGE JUMPS WITH JQUERY
-// TODO: ADD MANUAL PAGE JUMPS
+$(".backButton").click(backButton);
+$("a").removeAttr('href');
 
 
