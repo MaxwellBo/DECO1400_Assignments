@@ -50,30 +50,31 @@ function Node(id, left, straight, right, seen) {
 // The main datastrcuture
 //A hashmap of section names, to sections. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
-    "Title": new Node("Title"
-                      , "Yes"
-                      , "Maybe"
-                      , "No"
+    "TITLE": new Node("TITLE"
+                      , null
+                      , "MAIN"
+                      , null
                       , true
                       ),
-    "Yes": new Node("Yes"
+    
+    "MAIN": new Node("MAIN"
+                      , "FOLLOW"
+                      , null
+                      , "HOTEL"
+                      , true
+                      ),
+    "FOLLOW": new Node("FOLLOW"
                     , null
                     , null
                     , null
                     , false
                     ),
-    "No": new Node("No"
+    "HOTEL": new Node("HOTEL"
                    , null
                    , null
                    , null
                    , false
                    ), 
-    "Maybe": new Node("Maybe"
-                      , "Title"
-                      , null
-                      , null
-                      , null
-                      , false)
 };
 
 // Getter for the model
@@ -248,7 +249,7 @@ function renderTree(x, y, node, tier) {
 function refreshTree() {
     $("svg#tree circle").remove();
     $("svg#tree path").remove();
-    renderTree(150, 100, getNode("Title"), 0);
+    renderTree(150, 100, getNode("TITLE"), 0);
 }
 
 /* ---------------------------------------------- */
@@ -256,12 +257,12 @@ function refreshTree() {
 /* ---------------------------------------------- */
 
 // Initialize the model
-let staged = getNode("Title");
+let staged = getNode("TITLE");
 
 // Initialize the view
-$('section:not(#Title)').hide();
+$('section:not(#TITLE)').hide();
 refreshTree();
-selectNode("Title");
+selectNode("TITLE");
 
 // Initialize the controller
 $(".takeLeft").click(takeLeft);
