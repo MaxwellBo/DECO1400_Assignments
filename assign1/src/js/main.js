@@ -143,17 +143,17 @@ function drawNode(x, y, id, parent) {
             .attr('cx', x)
             .attr('cy', y)
             .attr('r', NODE_RADIUS)
-            .attr('stroke', "black")
-            .attr('stroke-width', "1")
-            .attr('fill', "grey")
+            .attr('stroke', "#073642")
+            .attr('stroke-width', "2")
+            .attr('fill', "#839496")
             .attr('id', id)
             .click(stageNodeWithID)
             .appendTo($("svg#tree"));
 }
 
 function selectNode(id) {
-    $("circle").attr('fill', "grey")
-    $("circle#" + id).attr('fill', "white");
+    $("circle").attr('fill', "#839496")
+    $("circle#" + id).attr('fill', "#d33682");
 }
 
 
