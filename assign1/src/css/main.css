@@ -37,10 +37,7 @@ body {
 nav {
     background: #eee8d5;
     background-image: url("../img/small_steps.png");
-    display:inline-block;
     position: fixed;
-    top: 0;
-    left:0;
     height: 100%;
     width: 300px;
 }
@@ -60,18 +57,29 @@ nav svg path {
   fill:none;
 }
 
+div#divider {
+    background: #dc322f;
+    margin-left: 290px;
+    height: 100%;
+    width: 10px;
+}
+
 /* ---------------------------------------------- */
 /* ### THE STORY STYLING ### */
 /* ---------------------------------------------- */
 
-article {
-/*    display: inline-block;*/
+body {
     background: #fdf6e3; /* base3 */
+}
+
+article {
+    /*display: inline-block;*/
+    /*    overflow: auto;*/
     margin-left: 300px;
     max-width: 650px;
     padding: 10px 40px;
     height: 100%;
-/*    overflow: auto;*/
+
     
     
     /*    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;*/
