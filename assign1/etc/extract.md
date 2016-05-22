@@ -1,3 +1,5 @@
+# MAIN
+
 You are relaxing one afternoon after school
 when you get a phone call from your uncle
 Bruce, a brilliant scientist and world traveler.
@@ -53,11 +55,23 @@ the terminal.
 Quickly you unfold the note. Scrawled in red
 ink are the words "Beware the Sphinx."
 
-Choose_Your_Own_Adventure-001.png
+You have heard about the statue of the Sphinx
+next to the Pyramids. But why should you beware of it? The thought occurs to you that
+"sphinx" could be a code word and not refer to
+the actual Sphinx at all. Maybe the note is a
+meaningless hoax. On the other hand, it could
+spell danger for you and Bruce.
 
-`FOLLOW`
-3
-`HOTEL`
+You remember the time you felt an urge to get
+off a bus in your hometown—just before it was hit
+by a truck. Now you have a hunch that you
+should follow this man.
+
+![Pyramids][Choose_Your_Own_Adventure-001.png]
+
+[Try to follow him](#FOLLOW) 
+
+[Decide that it is wiser to go to your hotel](#HOTEL)
 
 
 --- 
@@ -98,9 +112,12 @@ But at the check-in desk, the clerk will not listen
 to you. What will you do?
 
 
-`THREATEN`
-4
-`SELFDOUBT`
+[Threaten to go to another hotel unless
+the clerk changes your room](#THREATEN)
+
+[Decide you're imagining things and let
+the clerk talk you into taking your original
+room](#SELFDOUBT)
 
 ---
 
@@ -139,7 +156,7 @@ the dance floor. You find a table off in a dim
 corner. You can't see the man you followed, but
 your eyes are still adjusting to the darkness.
 
-Choose_Your_Own_Adventure-037.png
+![Man keeled over table intoxicated][Choose_Your_Own_Adventure-037.png]
 
 
 A waiter brings you a long-handled pot containing thick, strong coffee. He pours it ceremoniously into a small porcelain cup. It tastes
@@ -187,6 +204,135 @@ situation. You look at the window high up on the
 wall and then at the open door in front of you
 
 
-`ACCEPT`
-87
-`ESCAPE`
+[Decide to accept Serena's help](#ACCEPT)
+
+[Try to escape through
+the door, because you don't trust her](#ESCAPE)
+
+---
+
+# ESCAPE 
+
+You pull open the door and dash down a corridor that leads back into the cafe. You run outside. Two men from the cafe race after you,
+shouting in Arabic. You push your way through
+the crowds, trying to stay hidden. Which way to
+go? There is an open door on your right with a
+small courtyard inside. You decide to chance it
+and dart through the door, slamming it behind
+you. You lean against the door, gasping for
+breath.
+
+A hulk of a man appears. He has a heavy, dark
+beard and piercing eyes.
+
+"Welcome to my house," he says. "Have you
+come to buy a magic spell or perhaps something
+to ward off the evil eye?"
+
+"I need help," you say. "Someone is after me."
+
+"In that case, you are welcome in my humble
+house. You are safe here. I am Al-Din, the magician. My magic will protect you."
+
+You follow Al-Din up a flight of stairs into a
+room with a low table surrounded by cushions.
+He serves you some mint tea and tells you about
+the ancient magic he practices.
+
+"All is illusion," he says. "Here, I will show you.
+Close your eyes and repeat this spell three times:
+abah arah arah abah blah ah."
+
+You repeat Al-Din's spell three times. The room
+begins to spin around you, then fades away altogether. You seem to be floating in a void. Are
+you asleep? Dreaming? You find yourself flying
+high up over the ocean on what could be a magic
+carpet.
+
+You awaken in your living room back home.
+The phone is ringing. You answer it. Your uncle is
+on the phone.
+
+"I'm just in from Egypt," he says. "I have to get
+some new equipment to continue my investigations of the Pyramids. How would you like to go
+back with me for a few weeks?"
+
+This is really strange. Did you just dream everything that happened, or did that magician really
+send you back here to start over?
+
+
+[It was just a dream, and you
+would still like to go](#MAIN)
+
+[Say no, knowing what is in store for you](#KNOWING)
+
+---
+
+# SELFDOUBT 
+
+Maybe jet lag and your imagination are getting
+the best of you.
+
+"Never mind," you tell the desk clerk.
+
+You go back up to the room and unpack your
+small suitcase. You make a careful search. There
+is no sign that an intruder has been there, and
+you feel relieved. Your room turns out to be a
+suite, with a bedroom, a sitting room, a small
+bathroom, and two tiny closets. The bedroom
+windows are covered with elaborately patterned
+grillwork. Andrea's room is on the same floor,
+down the hall.
+
+Bruce finally arrives and you show him the
+note. For a moment he looks alarmed. Then he
+smiles. "Well, I suggest we forget about it for the
+moment and go out on the town," he says. "I
+know this great spot called the Sahara Club
+where we can get a delicious meal of shish kebab—and even watch some genuine Egyptian
+belly dancing."
+
+When you arrive back at the hotel later, you are
+very tired. Andrea goes to her room, Bruce retires
+to the bedroom, and you quickly fall asleep on
+the couch in the sitting room.
+
+Toward early morning some inner instinct halfawakens you. You hear a faint rustling and the
+sound of a door softly clicking shut. You snap on
+the small table lamp. Only inches away from your
+face is an asp, one of the deadliest snakes in the
+world.
+
+You've got seconds before it strikes.
+
+[If you grab your pillow and try to clamp it
+down on the snake](#PILLOW)
+
+---
+
+# THREATEN
+
+Body unimplemented
+
+---
+
+# SELFDOBUT
+
+Body unimplemented
+
+---
+
+# ACCEPT
+
+Body unimplemented
+
+---
+
+# KNOWING
+
+Body unimplemented
+
+# PILLOW
+
+---
