@@ -16,7 +16,6 @@ NOTE: Not exhaustive.
 2. I manipulate the SVG model in selectNode
 3. I bind on-click events to DOM elements and SVG elements in ENTRY POINT section and
 drawNode respectively.
-4. I add hover-effects in TODO
 */
 
 /* ---------------------------------------------- */
@@ -51,18 +50,18 @@ function Node(id, left, straight, right, seen) {
 //A hashmap of section names, to sections. This is the order they should appear in the no-script version of the website.
 const nodeMap = {
     "TITLE": new Node("TITLE"
-                      , null
-                      , "MAIN"
-                      , null
-                      , true
-                      ),
+                    , null
+                    , "MAIN"
+                    , null
+                    , true
+                    ),
     
     "MAIN": new Node("MAIN"
-                      , "FOLLOW"
-                      , null
-                      , "HOTEL"
-                      , true
-                      ),
+                    , "FOLLOW"
+                    , null
+                    , "HOTEL"
+                    , true
+                    ),
     "FOLLOW": new Node("FOLLOW"
                     , "ESCAPE"
                     , "ACCEPT"
@@ -127,7 +126,7 @@ function stageNode(id) {
     // Cache the current model
     former = staged;
     
-    console.log("STAGING " + id)
+    console.log("Staging node " + id)
     
     // Update the model
     staged = getNode(id);
@@ -180,7 +179,6 @@ function drawNode(x, y, id, parent) {
     let stageNodeWithID =  function() {
         stageNode(id);
     }
-    
     
     // "Shouldn't this be in the stylesheet?"
     // SVG has some weird interactions with the styleshet
@@ -248,7 +246,7 @@ function drawArrow(x1, y1, x2, y2, direction, loop) {
 // its appearance accordingly. Instead, you've got... this
 function renderTree(x, y, node, tier) {
     drawNode(x, y, node.id);
-    console.log("RENDERING " + node.id);
+    console.log("Rendering node " + node.id);
     
     let left = getNode(node.left);
     let straight = getNode(node.straight)
