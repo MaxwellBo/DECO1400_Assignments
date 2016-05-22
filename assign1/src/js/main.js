@@ -64,14 +64,26 @@ const nodeMap = {
                       , true
                       ),
     "FOLLOW": new Node("FOLLOW"
+                    , "ACCEPT"
                     , null
-                    , null
-                    , null
+                    , "ESCAPE"
                     , false
                     ),
     "HOTEL": new Node("HOTEL"
+                   , "THREATEN"
                    , null
+                   , "SELFDOUBT"
+                   , false
+                   ), 
+    "ESCAPE": new Node("ESCAPE"
+                   , "MAIN"
                    , null
+                   , "KNOWING"
+                   , false
+                   ),
+    "SELFDOUBT": new Node("SELFDOUBT"
+                   , null
+                   , "PILLOW"
                    , null
                    , false
                    ), 
@@ -88,6 +100,8 @@ function getNode(id) {
 
 function stageNode(id) {
     
+    console.log("STAGING" + id)
+    
     // Update the model
     staged = getNode(id);
     staged.seen = true;
@@ -100,6 +114,8 @@ function stageNode(id) {
     // and unmount all others
     $('section#' +id).show();
     $('section:not(#' + id + ')').hide();
+    
+    window.scrollTo(0, 0);
 }
 
 function takeLeft() {
