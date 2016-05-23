@@ -13,9 +13,11 @@ It features simplistic language, a setting that appeals primarily to children ag
 
 Users of this age require textual presentation that shouldn't hinder developing reading skills. Text should be sufficiently large, with high character and line spacing. Serifed fonts are likely difficult to read for this age group; while a serifed font is themetically a better aesthetic choice, they have been avoided in instances where the text is small, such as the body text. *Guardian Egyptian Headline* has been chosen as the header font. While serifed, it shall only be used in high-fontsize and high-contrast environments. It is a strong choice aesthetically and thematically. *Andale Mono* is an exceptional choice for small headers and body text - giving a time -appropriate typewriter look, while being an easy to read monospaced sans-serif. 
 
+![Wireframe](http://i.imgur.com/yqlPTgy.png)
+
 A short maximum line length is absolutely critical - young readers are more likely to lose track of their position when scanning. The site should have a simple user-interface without excessive use of gimmick and motion. Thus, the aesthetic should be achieved with pattern, colour, and illustration; anything else and the audience is likely to be distracted or confused. The site should adhere to the UNIX philosophy - *"do one thing and do it well."*. 
 
-The [Solarized Light Theme](http://ethanschoonover.com/solarized) was chosen as the colorscheme. It has similarities to the stereotypical color of the Egyptian desert and pyramids. Furthermore, it has been "[tested] on color calibrated displays (as well as uncalibrated/intentionally miscalibrated displays) and in a variety of lighting conditions" to optimize readibility, clarity, and eye health.
+The [Solarized Light Theme](http://ethanschoonover.com/solarized) was chosen as the colorscheme. It alludes to the color of the Egyptian desert and pyramids. Furthermore, it has been "[tested] on color calibrated displays (as well as uncalibrated/intentionally miscalibrated displays) and in a variety of lighting conditions" to optimize readibility, clarity, and eye health.
 
 The [*"Small Steps"** pattern](http://subtlepatterns.com/small-steps/) was used to style the background of the navigation pane, and the [*"Pyramid pattern"*](http://subtlepatterns.com/pyramid/) for the divider between the navigation pane and the main body. They are unsubtle attempts to replicate the steps of the pyramid and typical Ancient Egyptian styling respectively. 
 

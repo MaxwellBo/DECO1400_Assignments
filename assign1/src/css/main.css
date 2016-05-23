@@ -22,7 +22,11 @@ violet:    #6c71c4;
 blue:      #268bd2;
 cyan:      #2aa198;
 green:     #859900;
+
+NOTE: I did not use the Sass preprocessor.
+
 */
+
 
 
 /* ---------------------------------------------- */
@@ -73,6 +77,10 @@ body {
     background: #fdf6e3; /* base3 */
 }
 
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/::selection */
+
+
 article {
     /*display: inline-block;*/
     /*    overflow: auto;*/
@@ -85,6 +93,37 @@ article {
     color: #657b83; /* base02 */
     line-height: 1.6;
 
+}
+
+
+article a {
+    color: #268bd2;
+}
+
+article a:visited {
+    color: #6c71c4
+}
+
+article a:hover {
+    color: #d33682;
+}
+
+article a:focus {
+    color: #d33682;
+}
+
+article a:active {
+    color: #ffa3d0;
+}
+
+article::-moz-selection {
+    color: #fdf6e3;
+    background: #d33682;
+}
+
+p::selection {
+    color: #fdf6e3;
+    background: #d33682;
 }
 
 h1, h2, h3 {
