@@ -141,6 +141,7 @@ function stageNode(id) {
     $('section#' +id).show();
     $('section:not(#' + id + ')').hide();
     
+    // Progressing in the story goes to the top of the screen
     window.scrollTo(0, 0);
 }
 
@@ -176,8 +177,10 @@ function SVG(tag) {
 
 function drawNode(x, y, id, parent) {
     
+    // http://stackoverflow.com/questions/11715646/scroll-automatically-to-the-bottom-of-the-page
     let stageNodeWithID =  function() {
         stageNode(id);
+        window.scrollTo(0, document.body.scrollHeight);
     }
     
     // "Shouldn't this be in the stylesheet?"
