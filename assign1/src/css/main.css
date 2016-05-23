@@ -44,6 +44,15 @@ nav {
     position: fixed;
     height: 100%;
     width: 300px;
+    text-align: center;
+}
+
+nav a {
+    font-family: "Andale Mono", AndaleMono, monospace;
+    font-size: 28px;
+    color: #586e75; /* base02 */
+    line-height: 1.6;
+    margin-top: 150px;
 }
 
 nav svg {
