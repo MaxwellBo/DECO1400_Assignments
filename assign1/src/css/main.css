@@ -80,11 +80,7 @@ article {
     max-width: 650px;
     padding: 10px 40px;
     height: 100%;
-    
-    /*    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;*/
-/*    font-family: Cambria,Georgia,serif;*/
-/*    font-family: "Guardian Egyptian Text", Georgia, serif;*/
-    font-family: "Andale Mono",AndaleMono,monospace;
+    font-family: "Andale Mono", AndaleMono, monospace;
     font-size: 18px;
     color: #657b83; /* base02 */
     line-height: 1.6;

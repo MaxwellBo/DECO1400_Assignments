@@ -1,0 +1,11 @@
+License: MIT
+http://chubao4ever.github.io/tech/2015/07/16/jquerys-append-not-working-with-svg-element.html
+
+License: MIT
+http://ethanschoonover.com/solarized
+
+License: Covered under fair use
+Secret of the Pyramids (Choose Your Own Adventure, No. 19) by Richard Brightfield 
+
+License: Apache License
+https://github.com/guardian/pasteup
